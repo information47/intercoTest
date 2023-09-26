@@ -17,26 +17,31 @@ namespace iothink.interco.lib.Models.Incwo
         /// <summary>
         /// Get or Set the Name of the project
         /// </summary>
+        [XmlElement("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Get or Set the Reference of the project
         /// </summary>
+        [XmlElement("reference")]
         public string Reference { get; set; }
 
         /// <summary>
         /// Get or Set the Status identifier of the project
         /// </summary>
+        [XmlElement("status_id")]
         public int StatusId { get; set; }
 
         /// <summary>
         /// Get or Set the Date of creation of the project
         /// </summary>
+        [XmlElement("created_at")]
         public DateTime CreationDate { get; set; }
 
         /// <summary>
         /// Get or Set the Date of update of the project
         /// </summary>
+        [XmlElement("updated_at")]
         public DateTime UpdateDate { get; set; }
 
         /// <summary>
@@ -48,6 +53,7 @@ namespace iothink.interco.lib.Models.Incwo
         /// <summary>
         /// Get or Set the model of contributor as enum
         /// </summary>
+        [XmlElement("contribution_model")]
         public EContributorModel ContributorModel { get; set; }
     }
 }
