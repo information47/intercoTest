@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
-    public class Proposal
+    public class Proposal : IincwoObject
     {
         /// <summary>
         /// Get or Set the id of the proposal

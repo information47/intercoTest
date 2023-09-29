@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
-    public class Lead
+    public class Lead : IincwoObject
     {
         /// <summary>
         /// Get or Set the ID of the lead

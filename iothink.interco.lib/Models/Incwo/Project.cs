@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
-    public class Project
+    public class Project : IincwoObject
     {
         /// <summary>
         /// Get or Set the identifier of the project

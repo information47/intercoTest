@@ -5,7 +5,8 @@ using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
-    public class Contact
+    [XmlRoot("contact")]
+    public class Contact : IincwoObject
     {
         /// <summary>
         /// Get or Set the id of the contact
@@ -58,8 +59,28 @@ namespace iothink.interco.lib.Models.Incwo
         /// <summary>
         /// Get or Set the creation date of the contact
         /// </summary>
-        [XmlElement("created_at")]
+
+        [XmlIgnore]
         public DateTime creationDate { get; set; }
+
+        [XmlElement("created_at")]
+        public string creationDateString
+        {
+            get { return creationDate.ToString("dd-MM-yyyy-HH-mm"); }
+            set
+            {
+                // Parse date from string, in specific format
+                if (DateTime.TryParseExact(value, "dd-MM-yyyy-HH-mm", null, System.Globalization.DateTimeStyles.None, out DateTime result))
+                {
+                    creationDate = result;
+                }
+                else
+                {
+                    // Si la désérialisation échoue, vous pouvez jeter une exception
+                    throw new FormatException("incorrect date format in XML.");
+                }
+            }
+        }
 
         /// <summary>
         /// Get or Set the firm id of the contact
