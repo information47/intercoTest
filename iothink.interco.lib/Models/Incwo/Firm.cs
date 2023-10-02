@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
+    [XmlRoot("firm")]
     public class Firm : IincwoObject
     {
         /// <summary>

@@ -6,6 +6,7 @@ namespace iothink.interco.lib.Models.Incwo
 {
     public interface IincwoObject
     {
+        int id { get; set; }
 
     }
 }

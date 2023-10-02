@@ -16,7 +16,10 @@ namespace iothink.interco.services.Utils
             typeMappings = new Dictionary<string, string>
             {
                 { "contacts", "Contact" },
-                { "leads", "Lead" }
+                { "leads", "Lead" },
+                { "proposal_sheets","Proposal" },
+                { "bill_sheets", "Invoice" },
+                { "firms", "Firm" }
             };
         }
 

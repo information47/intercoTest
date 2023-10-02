@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
+    [XmlRoot("proposal")]
     public class Proposal : IincwoObject
     {
         /// <summary>
@@ -39,9 +41,17 @@ namespace iothink.interco.lib.Models.Incwo
 
         /// <summary>
         /// Get or Set the creation date of the proposal
+        /// parse correctly the date by the way
         /// </summary>
-        [XmlElement("created_at")]
+        [XmlIgnore]
         public DateTime creationDate { get; set; }
+
+        [XmlElement("created_at")]
+        public string SigningDateString
+        {
+            get { return creationDate.ToString("dd-MM-yyyy"); }
+            set { creationDate = DateTime.ParseExact(value, "dd-MM-yyyy", CultureInfo.InvariantCulture); }
+        }
 
         /// <summary>
         /// Get or Set the contact id of the proposal

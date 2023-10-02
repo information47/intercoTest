@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
+    [XmlRoot("lead")]
     public class Lead : IincwoObject
     {
         /// <summary>
@@ -13,6 +15,7 @@ namespace iothink.interco.lib.Models.Incwo
         [XmlElement("id")]
         public int id { get; set; }
 
+
         /// <summary>
         /// Get or Set the manager ID of the lead
         /// </summary>
@@ -20,16 +23,10 @@ namespace iothink.interco.lib.Models.Incwo
         public int managerId { get; set; }
 
         /// <summary>
-        /// Get or Set the client name of the lead
-        /// </summary>
-        [XmlElement("client_name")]
-        public int clientName { get; set; }
-
-        /// <summary>
         /// Get or Set the topic of the lead
         /// </summary>
         [XmlElement("topic")]
-        public int topic { get; set; }
+        public string topic { get; set; }
 
         /// <summary>
         /// Get or Set the firm ID of the lead
@@ -41,25 +38,27 @@ namespace iothink.interco.lib.Models.Incwo
         /// Get or Set the amount of sale without taxes for the lead
         /// </summary>
         [XmlElement("value")]
-        public int amount { get; set; }
+        public double amount { get; set; }
 
         /// <summary>
         /// Get or Set the expecting date of signing the sale
+        /// parse correctly the date by the way
         /// </summary>
+        [XmlIgnore]
+        public DateTime signingDate { get; set; }
+
         [XmlElement("value_date")]
-        public int signingDate { get; set; }
+        public string SigningDateString
+        {
+            get { return signingDate.ToString("dd-MM-yyyy"); }
+            set { signingDate = DateTime.ParseExact(value, "dd-MM-yyyy", CultureInfo.InvariantCulture); }
+        }
 
         /// <summary>
         /// Get or Set the confidence percentage of the lead
         /// </summary>
         [XmlElement("confidence_pct")]
         public int confidencePct { get; set; }
-
-        /// <summary>
-        /// Get or Set the project ID of the lead
-        /// </summary>
-        [XmlElement("project_id")]
-        public int projectId { get; set; }
 
     }
 }

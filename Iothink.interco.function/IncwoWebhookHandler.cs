@@ -31,10 +31,10 @@ namespace Iothink.interco.function
 
                 // define and send response
                 string responseMessage = "element received";
-               
-                WebhookAnalyserService analyser = new WebhookAnalyserService();
-                IincwoObject test = await analyser.WebhookAnalyse<IincwoObject>(requestBody);
-                log.LogInformation($" --- IincwoObject retrieved --- : {test} ");
+                
+                IincwoObject incwoObject = await IncwoService.WebhookAnalyse<IincwoObject>(requestBody);
+
+                log.LogInformation($"IincwoObject retrieved : {incwoObject.id} ");
                 
                 return new OkObjectResult(responseMessage);
             }

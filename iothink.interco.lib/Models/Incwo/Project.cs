@@ -1,18 +1,20 @@
 ﻿using iothink.interco.lib.Enums.Incwo;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
+    [XmlRoot("project")]
     public class Project : IincwoObject
     {
         /// <summary>
         /// Get or Set the identifier of the project
         /// </summary>
         [XmlElement("id")]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         /// <summary>
         /// Get or Set the Name of the project
@@ -35,14 +37,29 @@ namespace iothink.interco.lib.Models.Incwo
         /// <summary>
         /// Get or Set the Date of creation of the project
         /// </summary>
-        [XmlElement("created_at")]
+        [XmlIgnore]
         public DateTime CreationDate { get; set; }
+
+        [XmlElement("created_at")]
+        public string CreationDateString
+        {
+            get { return UpdateDate.ToString("dd-MM-yyyy"); }
+            set { UpdateDate = DateTime.ParseExact(value, "dd-MM-yyyy", CultureInfo.InvariantCulture); }
+        }
 
         /// <summary>
         /// Get or Set the Date of update of the project
+        /// parse correctly the date by the way
         /// </summary>
-        [XmlElement("updated_at")]
+        [XmlIgnore]
         public DateTime UpdateDate { get; set; }
+
+        [XmlElement("updated_at")]
+        public string SigningDateString
+        {
+            get { return UpdateDate.ToString("dd-MM-yyyy"); }
+            set { UpdateDate = DateTime.ParseExact(value, "dd-MM-yyyy", CultureInfo.InvariantCulture); }
+        }
 
         /// <summary>
         /// Get or Set the Creator identifier

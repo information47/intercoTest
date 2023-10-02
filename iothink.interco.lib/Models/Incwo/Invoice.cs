@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
 
 namespace iothink.interco.lib.Models.Incwo
 {
+    [XmlRoot("bill_sheet")]
     public class Invoice : IincwoObject
     {
         /// <summary>
         /// Get or Set the identifier of the invoice
         /// </summary>
         [XmlElement("id")]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         /// <summary>
         /// Get or Set the project id of the invoice
@@ -39,9 +41,17 @@ namespace iothink.interco.lib.Models.Incwo
 
         /// <summary>
         /// Get or Set the creation date of the invoice
+        /// parse correctly the date by the way
         /// </summary>
-        [XmlElement("created_at")]
+        [XmlIgnore]
         public DateTime creationDate { get; set; }
+
+        [XmlElement("created_at")]
+        public string SigningDateString
+        {
+            get { return creationDate.ToString("dd-MM-yyyy"); }
+            set { creationDate = DateTime.ParseExact(value, "dd-MM-yyyy", CultureInfo.InvariantCulture); }
+        }
 
         /// <summary>
         /// Get or Set the contact id of the invoice
